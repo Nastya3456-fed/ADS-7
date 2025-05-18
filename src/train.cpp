@@ -37,17 +37,15 @@ void Train::addCar(bool light) {
 int Train::getLength() {
     if (!first) return 0;
     int length = 1;
-    countOp = 0;
     Train::Car* cur = first;
     while (true) {
         cur = cur->next;
-        if (cur == first) break;  // проверяем переход перед увеличением
-
-        countOp++;
+        if (cur == first) break;
         length++;
     }
     return length;
 }
+
 
 int Train::getOpCount() {
     return countOp;
