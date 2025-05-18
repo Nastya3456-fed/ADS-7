@@ -41,11 +41,12 @@ int Train::getLength() {
     Train::Car* cur = first;
     while (true) {
         cur = cur->next;
+        if (cur == first) break;  // проверяем переход перед увеличением
+
         countOp++;
         length++;
-        if (cur == first) break;
     }
-    return length - 1;
+    return length;
 }
 
 int Train::getOpCount() {
