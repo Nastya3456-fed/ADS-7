@@ -25,59 +25,25 @@ void Train::addCar(bool light) {
 }
 
 int Train::getLength() {
-    if (!first) throw std::logic_error("Train is empty!");
-    
     countOp = 0;
-    Car* current = first;
-    
-    // Если поезд из одного вагона
-    if (current->next == first) {
-        countOp = 1;
-        return 1;
-    }
-    
-    // Алгоритм подсчета длины:
-    // 1. Включаем лампочку в стартовом вагоне
-    current->light = true;
-    countOp++;
-    
-    // 2. Начинаем движение по кругу
-    current = current->next;
-    countOp++;
-    int length = 1;
-    
-    // 3. Идем по кругу, пока не найдем включенную лампочку
     while (true) {
-        length++;
-        
-        // Если нашли включенную лампочку - завершаем
-        if (current->light) {
-            break;
+        Car* SecFirst = first;
+        int carriages = 1;
+        if (!SecFirst->light) {
+            SecFirst->light = true;
+            SecFirst->light = true;
+            SecFirst = SecFirst->next;
+            countOp += 2;
         }
-        
-        // Включаем лампочку в текущем вагоне
-        current->light = true;
-        countOp++;
-        
-        // Переходим к следующему вагону
-        current = current->next;
-        countOp++;
-        
-        // Защита от бесконечного цикла
-        if (current == first) {
-            break;
+        while (!SecFirst->light) {
+            SecFirst = SecFirst->next;
+            countOp += 2;
+            ++carriages;
         }
+        SecFirst->light = false;
+        if (!first->light)
+            return carriages;
     }
-    
-    // Восстанавливаем исходное состояние лампочек
-    Car* reset = first;
-    do {
-        reset->light = false;
-        reset = reset->next;
-    } while (reset != first);
-    
-    return length;
-}
 
 
 int Train::getOpCount() {
