@@ -35,7 +35,7 @@ void Train::addCar(bool light) {
     }
 }
 
-nt Train::getLength() {
+int Train::getLength() {
     if (!first) throw std::logic_error("Train is empty!");
     
     countOp = 0;
