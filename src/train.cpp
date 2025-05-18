@@ -35,19 +35,24 @@ void Train::addCar(bool light) {
 }
 
 int Train::getLength() {
-    if (!first) return 0;
+    if (!first) throw std::logic_error("Poezd pust!");
 
     countOp = 0;
-    int length = 0;
     Car* current = first;
 
-    do {
-        length++;
-        current = current->next;
-        countOp++;
-    } while (current != first);
+    int steps = 1;
+    current->light = true;  
 
-    return length;
+    current = current->next;
+    countOp++;
+
+    while (!current->light) {
+        countOp++;
+        steps++;
+        current = current->next;
+    }
+
+    return steps;
 }
 
 
