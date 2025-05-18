@@ -4,17 +4,6 @@
 
 Train::Train() : first(nullptr), countOp(0) {}
 
-Train::~Train() {
-    if (!first) return;
-    Train::Car* cur = first->next;
-    while (cur != first) {
-        Train::Car* next = cur->next;
-        delete cur;
-        cur = next;
-    }
-    delete first;
-}
-
 void Train::addCar(bool light) {
     Train::Car* car = new Train::Car;
     car->light = light;
