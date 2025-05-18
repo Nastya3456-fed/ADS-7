@@ -30,27 +30,24 @@ int Train::getLength() {
         Car* SecFirst = first;
         int carriages = 1;
 
-        if (SecFirst->light) {
-            SecFirst = SecFirst->next;
-            countOp += 1;
-            ++carriages;
-        }
-
-        if (!SecFirst->light) {
-            SecFirst->light = true;
+        if (SecFirst->light) {        // Если у первой вагонки свет включен
+            SecFirst = SecFirst->next;// Переходим к следующей вагонетке
+            countOp += 2;             // Учитываем операции (смотри ниже)
+        }else{  // Если у первой вагонки свет выключен (false)
+            SecFirst->light = true; // Включаем свет (ставим метку)
             SecFirst = SecFirst->next;
             countOp += 2;
         }
 
-        while (!SecFirst->light) {
+        while (!SecFirst->light) { // Пока свет выключен у текущей вагонки
             SecFirst = SecFirst->next;
             countOp += 2;
             ++carriages;
         }
-        SecFirst->light = false;
+        SecFirst->light = false;   // Выключаем свет у текущей вагонки (сбрасываем метку)
 
         if (!first->light)
-            return carriages;
+            return carriages;   // Если у первой вагонки свет теперь выключен
     }
 }
 
