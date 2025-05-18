@@ -41,31 +41,41 @@ int Train::getLength() {
     countOp = 0;
     Car* current = first;
     
-    // Если поезд из одного вагона
+    // Если поезд состоит из одного вагона
     if (current->next == first) {
         countOp = 1;
         return 1;
     }
     
-    // Включаем лампочку в первом вагоне
+    // Алгоритм подсчета длины:
+    // 1. Включаем лампочку в стартовом вагоне
     current->light = true;
     countOp++;
     
-    // Переходим к следующему вагону
+    // 2. Начинаем движение по кругу
     current = current->next;
     countOp++;
     int length = 1;
     
-    // Идем по кругу, пока не найдем включенную лампочку
-    while (!current->light) {
+    // 3. Идем по кругу, пока не найдем включенную лампочку
+    while (current != first) {
         length++;
-        current->light = true;  // Включаем лампочку
+        
+        // Если нашли включенную лампочку - завершаем
+        if (current->light) {
+            break;
+        }
+        
+        // Включаем лампочку в текущем вагоне
+        current->light = true;
         countOp++;
-        current = current->next; // Переходим дальше
+        
+        // Переходим к следующему вагону
+        current = current->next;
         countOp++;
     }
     
-    // Восстанавливаем исходное состояние
+    // Восстанавливаем исходное состояние лампочек
     current = first;
     do {
         current->light = false;
