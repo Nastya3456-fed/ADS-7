@@ -29,17 +29,26 @@ int Train::getLength() {
     while (true) {
         Car* SecFirst = first;
         int carriages = 1;
+
+        if (SecFirst->light) {
+            SecFirst = SecFirst->next;
+            countOp += 1;
+            ++carriages;
+        }
+
         if (!SecFirst->light) {
             SecFirst->light = true;
             SecFirst = SecFirst->next;
             countOp += 2;
         }
+
         while (!SecFirst->light) {
             SecFirst = SecFirst->next;
             countOp += 2;
             ++carriages;
         }
         SecFirst->light = false;
+
         if (!first->light)
             return carriages;
     }
