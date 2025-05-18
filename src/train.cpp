@@ -1,5 +1,6 @@
 // Copyright 2021 NNTU-CS
 #include "train.h"
+#include <stdexcept>
 
 Train::Train() : first(nullptr), countOp(0) {}
 
