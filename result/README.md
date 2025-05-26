@@ -1,4 +1,5 @@
 Здесь размещаются графики с результатами экспериментов
 
-![photo_2025-05-18_19-53-37](https://github.com/user-attachments/assets/0fc4de97-376b-46a2-8d45-0407cd534689)
-![photo_2025-05-18_19-53-28](https://github.com/user-attachments/assets/a9f7ecdd-25e2-40d5-83c9-78fe07ca1dc3)
+
+![plot-1](https://github.com/user-attachments/assets/700aee21-ab67-4906-a461-864e3130e29b)
+![plot-2](https://github.com/user-attachments/assets/7a3d4e10-9698-4d21-8f6e-ba064b5a710c)
